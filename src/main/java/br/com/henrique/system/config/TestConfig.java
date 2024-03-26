@@ -2,6 +2,8 @@ package br.com.henrique.system.config;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +22,11 @@ public class TestConfig implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        Product product = new Product(null, "test", new BigDecimal("300.00"), new BigDecimal("300.00"), Instant.now(), Instant.now(), 2);
-        repository.save(product);
+        List<Product> list = new ArrayList<>();
+        for(int i = 0; i<10; i++){
+            list.add(new Product(null, "test", new BigDecimal("300.00"), new BigDecimal("300.00"), Instant.now(), Instant.now(), 2));
+        }
+        
+        repository.saveAll(list);
     }
 }
