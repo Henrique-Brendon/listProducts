@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
-
-
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -58,6 +55,5 @@ public class ProductController {
         entity = service.update(id, entity);
         return ResponseEntity.ok().body(entity);
     }
-    
     
 }

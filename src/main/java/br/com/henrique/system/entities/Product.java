@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Product implements Serializable{
@@ -22,6 +24,14 @@ public class Product implements Serializable{
     private Instant dateEntry;
     private Instant dateExit;
     private Integer quantity;
+
+	@ManyToOne
+	@JoinColumn(name = "sector")
+	private Sector sector;
+
+    @ManyToOne
+    @JoinColumn(name = "codList")
+    private CodList codList;
 
     public Product(){}
 
@@ -90,6 +100,22 @@ public class Product implements Serializable{
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Sector getSector() {
+        return sector;
+    }
+
+    public void setSector(Sector sector) {
+        this.sector = sector;
+    }
+
+    public CodList getCodList() {
+        return codList;
+    }
+
+    public void setCodList(CodList codList) {
+        this.codList = codList;
     }
 
     @Override
