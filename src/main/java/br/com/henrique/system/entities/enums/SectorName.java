@@ -1,9 +1,10 @@
 package br.com.henrique.system.entities.enums;
 
 public enum SectorName {
+    DEFAULT(0),
     HARDWARE(1), 
     PERIPHELRALS(2),
-    ELECTRONICS(3),
+    ELETRONICS(3),
     SMARTHPHONES(4);
 
     private int code;
