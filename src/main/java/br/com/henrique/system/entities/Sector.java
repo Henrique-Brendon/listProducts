@@ -115,7 +115,7 @@ public class Sector implements Serializable{
 
         // PERIPHELRALS
         map.put("Mouse", new Sector(SectorName.PERIPHELRALS));
-        map.put(" Keyboard", new Sector(SectorName.PERIPHELRALS));
+        map.put("Keyboard", new Sector(SectorName.PERIPHELRALS));
         map.put("Headphones", new Sector(SectorName.PERIPHELRALS));
 
 		Sector sec = new Sector(SectorName.DEFAULT);
@@ -150,6 +150,9 @@ public class Sector implements Serializable{
             return false;
         return true;
     }
-
     
+    @Override
+    public String toString() {
+        return name.name();
+    }
 }

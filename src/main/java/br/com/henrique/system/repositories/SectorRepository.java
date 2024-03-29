@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.henrique.system.entities.Sector;
 
 public interface SectorRepository extends JpaRepository<Sector, Long>{
-    
 }

@@ -1,19 +1,20 @@
 package br.com.henrique.system.config;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.data.domain.Sort;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import br.com.henrique.system.entities.CodList;
 import br.com.henrique.system.entities.Product;
 import br.com.henrique.system.entities.Sector;
+import br.com.henrique.system.entities.enums.SectorName;
 import br.com.henrique.system.repositories.CodListRepository;
 import br.com.henrique.system.repositories.ProductRepository;
 import br.com.henrique.system.repositories.SectorRepository;
@@ -35,25 +36,34 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Product p1 = new Product(null, "GTX 980", new BigDecimal("500.00"), new BigDecimal("500.00"), DateTransform.formatarData("05/02/2018"), DateTransform.formatarData("18/03/2018"), 10);
-        Sector s1 = new Sector().mapSetor(p1.getName());
-        p1.setSector(s1);
-        s1.getProduct().add(p1);
-        sectorRepository.save(s1);
-        productRepository.save(p1);
-
-        Product p2 = new Product(null, "Mouse", new BigDecimal("40.00"), new BigDecimal("120.00"), DateTransform.formatarData("05/02/2018"), DateTransform.formatarData("18/03/2018"), 10);
-        Sector s2 = new Sector().mapSetor(p2.getName());
-        p2.setSector(s2);
-        s2.getProduct().add(p2);
-        sectorRepository.save(s2);
-        productRepository.save(p2);
-
-        Product p3 = new Product(null, "iPhone 12", new BigDecimal("300.00"), new BigDecimal("1000.00"), DateTransform.formatarData("05/02/2018"), DateTransform.formatarData("18/03/2018"), 10);
-        Sector s3 = new Sector().mapSetor(p2.getName());
-        p3.setSector(s3);
-        s3.getProduct().add(p3);
-        sectorRepository.save(s3);
-        productRepository.save(p3);
+    	List<Product> product = new ArrayList<>(); 
+    	
+    	Product[] p = new Product[]
+			{
+				new Product(null, "GTX 960", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "GTX 970", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "GTX 980", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "GTX 1080 TI", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "RTX 2060 SUPER", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "RTX 2070 TI", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "RTX 2080 TI", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Samsung Galaxy S10", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Google Pixel 5", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "iPhone 12", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Google Pixel 5", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "RX 580", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "RYZEN 5600G", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "RYZEN 5 5700", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+			};
+    	
+    	Sector[] s = new Sector[p.length];
+    	for(int i = 0; i< p.length; i++) {
+    		s[i] = new Sector().mapSetor(p[i].getName());
+    		p[i].setSector(s[i]);
+    		s[i].getProduct().add(p[i]);
+    	}
+    	
+    	sectorRepository.saveAll(Arrays.asList(s));
+		productRepository.saveAll(Arrays.asList(p));
     }
 }

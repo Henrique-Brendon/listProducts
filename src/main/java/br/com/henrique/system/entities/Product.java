@@ -143,4 +143,11 @@ public class Product implements Serializable{
         return true;
     }
 
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", cost=" + cost + ", price=" + price + ", dateEntry="
+				+ dateEntry + ", dateExit=" + dateExit + ", quantity=" + quantity + ", sector=" + sector + ", codList="
+				+ codList + "]";
+	}
+    
 }
