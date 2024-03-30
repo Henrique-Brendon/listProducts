@@ -54,6 +54,13 @@ public class TestConfig implements CommandLineRunner {
 				new Product(null, "RX 580", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
 				new Product(null, "RYZEN 5600G", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
 				new Product(null, "RYZEN 5 5700", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Mouse", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Mouse", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Keyboard", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Headphones", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Headphones", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				new Product(null, "Headphones", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
+				
 			};
     	
     	Sector[] s = new Sector[p.length];

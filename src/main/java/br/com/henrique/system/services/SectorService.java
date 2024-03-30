@@ -25,18 +25,22 @@ public class SectorService {
         this.repository = repository;
     }
     
-    public List<Product> findAllHardwareSortedBySector(){
-        List<Product> hardwareProducts = new ArrayList<>();
+    public List<Sector> findAll() {
+    	return repository.findAll();
+    }
+    
+    public List<Product> findAllProductsSortedBySector(SectorName sectorName) {
+        List<Product> products = new ArrayList<>();
         List<Sector> sectors = repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
         
         for (Sector sector : sectors) {
             for (Product product : sector.getProduct()) {
-                if (product.getSector().getName().equals(SectorName.HARDWARE)) {
-                    hardwareProducts.add(product);
+                if (product.getSector().getName().equals(sectorName)) {
+                    products.add(product);
                 }
             }
         }
-        
-        return hardwareProducts;
-}
+        return products;
+    }
+    
 }
