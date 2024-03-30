@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,21 +20,15 @@ public class CodList implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codList;
-
+    
+    @JsonIgnore
     @OneToMany(mappedBy = "codList")
     private List<Product> product = new ArrayList<>();
 
     public CodList() {}
 
-    public CodList(Long id, String codList) {
-        this.id = id;
+    public CodList(String codList) {
         this.codList = codList;
-    }
-
-    public CodList(Long id, String codList, List<Product> product) {
-        this.id = id;
-        this.codList = codList;
-        this.product = product;
     }
 
     public Long getId() {

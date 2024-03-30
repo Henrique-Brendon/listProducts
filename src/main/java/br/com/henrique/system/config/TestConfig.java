@@ -4,17 +4,15 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.domain.Sort;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import br.com.henrique.system.entities.CodList;
 import br.com.henrique.system.entities.Product;
 import br.com.henrique.system.entities.Sector;
-import br.com.henrique.system.entities.enums.SectorName;
 import br.com.henrique.system.repositories.CodListRepository;
 import br.com.henrique.system.repositories.ProductRepository;
 import br.com.henrique.system.repositories.SectorRepository;
@@ -64,13 +62,17 @@ public class TestConfig implements CommandLineRunner {
 			};
     	
     	Sector[] s = new Sector[p.length];
+    	CodList[] codList = new CodList[p.length];
     	for(int i = 0; i< p.length; i++) {
     		s[i] = new Sector().mapSetor(p[i].getName());
     		p[i].setSector(s[i]);
     		s[i].getProduct().add(p[i]);
+    		p[i].setCodList(codList[i] = new CodList("test"));
+    		codList[i].getProduct().add(p[i]);
     	}
     	
     	sectorRepository.saveAll(Arrays.asList(s));
+    	codListRepository.saveAll(Arrays.asList(codList));
 		productRepository.saveAll(Arrays.asList(p));
     }
 }
