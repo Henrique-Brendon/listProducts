@@ -170,8 +170,8 @@ public class ExcelExporter implements Serializable{
 			produtoAux.setDateEntry(DateTransform.formatarData(date));
 			product.setRow(product.getSheet().createRow(rowIndex++));
 			ExcelFile.createdCell(product.getRow(), 0, produtoAux.getName());
-			ExcelFile.createdCell(product.getRow(), 1, produtoAux.getName()); //getCaracteristicas()); // test
-			ExcelFile.createdCell(product.getRow(), 2, produtoAux.getName()); 	//getImglUrl());// test
+			ExcelFile.createdCell(product.getRow(), 1, produtoAux.getCharacteristics());
+			ExcelFile.createdCell(product.getRow(), 2, produtoAux.getImgUrl());
 			ExcelFile.createdCell(product.getRow(), 3, produtoAux.getCost() + "0 R$");
 			ExcelFile.createdCell(product.getRow(), 4, produtoAux.getPrice() + "0 R$");
 			ExcelFile.createdCell(product.getRow(), 5, produtoAux.getDateEntry());

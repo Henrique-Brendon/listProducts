@@ -19,6 +19,8 @@ public class Product implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String characteristics;
+    private String imgUrl;
     private BigDecimal cost;
     private BigDecimal price;
     private Instant dateEntry;
@@ -35,10 +37,12 @@ public class Product implements Serializable{
 
     public Product(){}
 
-    public Product(Long id, String name, BigDecimal cost, BigDecimal price, Instant dateEntry, Instant dateExit,
+    public Product(Long id, String name, String characteristics, String imgUrl, BigDecimal cost, BigDecimal price, Instant dateEntry, Instant dateExit,
             Integer quantity) {
         this.id = id;
         this.name = name;
+        this.characteristics = characteristics;
+        this.imgUrl = imgUrl;
         this.cost = cost;
         this.price = price;
         this.dateEntry = dateEntry;
@@ -62,7 +66,23 @@ public class Product implements Serializable{
         this.name = name;
     }
 
-    public BigDecimal getCost() {
+    public String getCharacteristics() {
+		return characteristics;
+	}
+
+	public void setCharacteristics(String characteristics) {
+		this.characteristics = characteristics;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public BigDecimal getCost() {
         return cost;
     }
 
