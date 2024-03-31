@@ -15,6 +15,8 @@ import br.com.henrique.system.services.util.ExcelExporter;
 public class Intel extends ExcelExporter implements ProductInterface{
 
 	private static final long serialVersionUID = 1L;
+	
+	public Intel() {}
 
 	public Intel(XSSFSheet sheet, XSSFCellStyle style, XSSFFont font, XSSFRow row, XSSFCell cell) {
 		super(sheet, style, font, row, cell);

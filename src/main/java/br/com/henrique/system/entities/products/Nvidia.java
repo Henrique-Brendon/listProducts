@@ -14,6 +14,8 @@ import br.com.henrique.system.services.util.ExcelExporter;
 
 public class Nvidia extends ExcelExporter implements ProductInterface{
 	private static final long serialVersionUID = 1L;
+	
+	public Nvidia() {}
 
 	public Nvidia(XSSFSheet sheet, XSSFCellStyle style, XSSFFont font, XSSFRow row, XSSFCell cell) {
 		super(sheet, style, font, row, cell);
