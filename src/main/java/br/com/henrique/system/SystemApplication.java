@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.henrique.system.entities.products.Intel;
+import br.com.henrique.system.entities.products.Nvidia;
 import br.com.henrique.system.services.util.ExcelFile;
 
 @SpringBootApplication
@@ -14,7 +15,7 @@ public class SystemApplication {
 	public static void main(String[] args) throws ParseException {
 		SpringApplication.run(SystemApplication.class, args);
 		
-		ExcelFile.createFile("intel.xlsx", new Intel());
+		ExcelFile.createFile("nvidia2.xlsx", new Nvidia());
 	}
 
 }
