@@ -17,6 +17,10 @@ public class ProductService {
     public ProductService(ProductRepository repository) {
         this.repository = repository;
     }
+    
+    public Long size() {
+    	return repository.count();
+    }
 
     public Product findById(Long id) {
         Optional<Product> obj = repository.findById(id);

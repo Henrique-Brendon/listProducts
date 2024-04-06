@@ -24,6 +24,10 @@ public class ProductController {
     public ProductController(ProductService service) {
         this.service =  service;
     }
+    @GetMapping("/size")
+    public Long size() {
+    	return service.size();
+    }
 
     @GetMapping()
     public ResponseEntity<List<Product>> findAll() {

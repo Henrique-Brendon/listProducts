@@ -1,17 +1,30 @@
 package br.com.henrique.system.services.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.stream.IntStream;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import br.com.henrique.system.entities.CodList;
+import br.com.henrique.system.entities.Product;
+import br.com.henrique.system.entities.Sector;
+import br.com.henrique.system.entities.enums.SectorName;
 import br.com.henrique.system.entities.products.Amd;
 import br.com.henrique.system.entities.products.Intel;
 import br.com.henrique.system.entities.products.Nvidia;
@@ -24,20 +37,13 @@ public class ExcelFile {
 		return file.exists();
 	}
 
-	public static void createFile(String path, Object object) throws ParseException {
+	public static void createFile(String path, ExcelExporter object) throws ParseException {
 		try (OutputStream file = new FileOutputStream(path)) {
 			XSSFWorkbook book = new XSSFWorkbook();
 			System.out.print("Created file");
-			ExcelExporter p1 = new ExcelExporter();
-			if (object instanceof Nvidia) {
-				p1 = (Nvidia) object;
-			} else if (object instanceof Amd) {
-				p1 = (Amd) object;
-			} else if (object instanceof Intel) {
-				p1 = (Intel) object;
-			}
-			p1.toString();
-			createSpreadsheets(book, p1);
+			check(object);
+			object.toString();
+			createSpreadsheets(book, object);
 			book.write(file);
 			book.close();
 		} catch (IOException e) {
@@ -75,5 +81,86 @@ public class ExcelFile {
 				cell.setCellValue(valor.toString());
 			}
 		}
+	}
+
+	public static List<Product> iterar(String path) {
+	    List<Product> list = new ArrayList<>();
+	    try (FileInputStream file = new FileInputStream(path)) {
+	        XSSFWorkbook book = new XSSFWorkbook(file);
+	        XSSFSheet sheet = book.getSheetAt(0);
+	        int dataBegins = 5;
+	        int lastRow = sheet.getLastRowNum();
+	        for (int i = dataBegins; i <= lastRow; i++) { 
+	            XSSFRow row = sheet.getRow(i);
+	            if (row != null) {
+	                Product product = new Product();
+	                for (int j = 0; j < 9; j++) {
+	                    XSSFCell cell = row.getCell(j);
+	                    if (cell != null) {
+	                        switch (j) {
+	                            case 0:
+	                                product.setName(cell.getStringCellValue());
+	                                break;
+	                            case 1:
+	                                product.setCharacteristics(cell.getStringCellValue());
+	                                break;
+	                            case 2:
+	                                product.setImgUrl(cell.getStringCellValue());
+	                                break;
+	                            case 3:
+	                                product.setCost(formatPrice(cell.getStringCellValue()));
+	                                break;
+	                            case 4:
+	                                product.setPrice(formatPrice(cell.getStringCellValue()));
+	                                break;
+	                            case 5:
+	                                product.setDateEntry(DateTransform.format(cell.getStringCellValue()));
+	                                break;
+	                            case 6:
+	                                if (cell != null) {
+	                                    product.setDateExit(DateTransform.format(cell.getStringCellValue()));
+	                                }
+	                                break;
+	                            case 7:
+	                                product.setSector(new Sector(SectorName.valueOf(cell.getStringCellValue())));
+	                                break;
+	                            case 8:
+	                                product.setCodList(new CodList(cell.getStringCellValue()));
+	                                break;
+	                        }
+	                    }
+	                }
+	                XSSFCell cell = row.getCell(9);
+	                if (cell != null && cell.getNumericCellValue() > 0) {
+	                    for (int h = 0; h < cell.getNumericCellValue(); h++) {
+	                        list.add(product);
+	                    }
+	                } else {
+	                    list.add(product);
+	                }
+	            }
+	        }
+	        return list;
+	    } catch (IOException e) {
+	        System.out.println(e.getMessage());
+	    }
+	    return null;
+	}
+	
+	private static ExcelExporter check(ExcelExporter obj) {
+		if (obj instanceof Nvidia) {
+			return new Nvidia();
+		} else if (obj instanceof Amd) {
+			return new Amd();
+		} else if (obj instanceof Intel) {
+			return new Intel();
+		}else {
+			throw new ExcelException("No instances found");
+		}
+	}
+	
+	private static BigDecimal formatPrice(String valor) {
+		String valorLimpo = valor.replaceAll("[^\\d.]", "");
+		return new BigDecimal(valorLimpo);
 	}
 }

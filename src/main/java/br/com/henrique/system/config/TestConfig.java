@@ -1,6 +1,5 @@
 package br.com.henrique.system.config;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +15,7 @@ import br.com.henrique.system.entities.Sector;
 import br.com.henrique.system.repositories.CodListRepository;
 import br.com.henrique.system.repositories.ProductRepository;
 import br.com.henrique.system.repositories.SectorRepository;
-import br.com.henrique.system.services.util.DateTransform;
+import br.com.henrique.system.services.util.ExcelFile;
 
 @Configuration
 @Profile("test")
@@ -34,45 +33,35 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-    	List<Product> product = new ArrayList<>(); 
-    	
-    	Product[] p = new Product[]
-			{
-				new Product(null, "GTX 960", "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "GTX 970",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "GTX 980",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "GTX 1080 TI",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "RTX 2060 SUPER",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "RTX 2070 TI",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "RTX 2080 TI",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Samsung Galaxy S10",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Google Pixel 5",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "iPhone 12",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Google Pixel 5",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "RX 580",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "RYZEN 5600G",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "RYZEN 5 5700",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Mouse",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Mouse",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Keyboard",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Headphones",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Headphones",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				new Product(null, "Headphones",  "", "", new BigDecimal("50.00"), new BigDecimal("50.00"), DateTransform.formatarData("05/11/2018"), DateTransform.formatarData("05/11/2018"), 10),
-				
-			};
-    	
-    	Sector[] s = new Sector[p.length];
-    	CodList[] codList = new CodList[p.length];
-    	for(int i = 0; i< p.length; i++) {
-    		s[i] = new Sector().mapSetor(p[i].getName());
-    		p[i].setSector(s[i]);
-    		s[i].getProduct().add(p[i]);
-    		p[i].setCodList(codList[i] = new CodList("test"));
-    		codList[i].getProduct().add(p[i]);
+    	List<Product> list = new ArrayList<>();
+    	try {
+    	    
+    	    list.addAll(ExcelFile.iterar("intel.xlsx"));
+    	    
+    	    if (!list.isEmpty()) {
+    	        System.out.println("Primeiro objeto: " + list.get(0).getName());
+    	        
+    			Sector[] sector = new Sector[list.size()];
+    			CodList[] codList = new CodList[list.size()];
+    			
+    			for(int i = 0; i< list.size(); i++) {
+    				sector[i] = new Sector().mapSetor(list.get(i).getName());
+    				list.get(i).setSector(sector[i]);
+    				sector[i].getProduct().add(list.get(i));
+    				list.get(i).setCodList(codList[i] = new CodList(String.valueOf(list.get(i).getCodList())));
+    				codList[i].getProduct().add(list.get(i));
+    			}
+    			
+    			codListRepository.saveAll(Arrays.asList(codList));
+    			sectorRepository.saveAll(Arrays.asList(sector));
+    			productRepository.saveAll(list);
+    	    } else {
+    	        System.out.println("A lista está vazia.");
+    	    }
+    	} catch (Exception e) {
+    	    System.out.println("Ocorreu uma exceção: " + e.getMessage());
+    	    e.printStackTrace();
     	}
-    	
-    	sectorRepository.saveAll(Arrays.asList(s));
-    	codListRepository.saveAll(Arrays.asList(codList));
-		productRepository.saveAll(Arrays.asList(p));
+		
     }
 }

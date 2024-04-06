@@ -81,23 +81,13 @@ public class ExcelExporter implements Serializable{
 		this.cell = cell;
 	}
 	
-	public ExcelExporter createObject(XSSFWorkbook book, String info, Object object) {
-		ExcelExporter product = null;
-		if (object instanceof Nvidia) {
-			product = new Nvidia();
-		} else if (object instanceof Amd) {
-			product = new Amd();
-		} else if (object instanceof Intel) {
-			product = new Intel();
-		}else {
-			throw new ExcelException("No instances found");
-		}
-		product.setSheet(book.getSheet(info));
-		product.setStyle(book.createCellStyle());
-		product.setFont(book.createFont());
-		((ProductInterface) product).logo(product);
-		genericHeader(product);
-		return product ;
+	public ExcelExporter createObject(XSSFWorkbook book, String info, ExcelExporter object) {
+		object.setSheet(book.getSheet(info));
+		object.setStyle(book.createCellStyle());
+		object.setFont(book.createFont());
+		((ProductInterface) object).logo(object);
+		genericHeader(object);
+		return object;
 	}
 
 	private void genericHeader(ExcelExporter product) {
@@ -114,13 +104,9 @@ public class ExcelExporter implements Serializable{
 	public void header(ExcelExporter obj, String sheetName) throws ParseException {
 		int numRow = 2;
 		int cell = 0;
-
-		if (obj instanceof Nvidia || obj instanceof Amd || obj instanceof Intel) {
-			obj.toString();
-		} 
 		obj.setRow(obj.getSheet().createRow(numRow));
 		obj.setCell(obj.getRow().createCell(cell));
-		obj.getCell().setCellValue("Código do produto:");
+		obj.getCell().setCellValue("Product code:");
 		((ProductInterface) obj).applyStyle(obj, 0);
 
 		CellRangeAddress c1 = new CellRangeAddress(numRow, numRow, cell + 1, 9);
@@ -169,13 +155,14 @@ public class ExcelExporter implements Serializable{
 		for (Product produtoAux : listProduto) {
 			produtoAux.setDateEntry(DateTransform.formatarData(date));
 			product.setRow(product.getSheet().createRow(rowIndex++));
+	
 			ExcelFile.createdCell(product.getRow(), 0, produtoAux.getName());
 			ExcelFile.createdCell(product.getRow(), 1, produtoAux.getCharacteristics());
 			ExcelFile.createdCell(product.getRow(), 2, produtoAux.getImgUrl());
 			ExcelFile.createdCell(product.getRow(), 3, produtoAux.getCost() + "0 R$");
 			ExcelFile.createdCell(product.getRow(), 4, produtoAux.getPrice() + "0 R$");
 			ExcelFile.createdCell(product.getRow(), 5, produtoAux.getDateEntry());
-			ExcelFile.createdCell(product.getRow(), 6, new String("NULL"));
+			//ExcelFile.createdCell(product.getRow(), 6, new String("NULL"));
 			ExcelFile.createdCell(product.getRow(), 7, produtoAux.getSector().getName());
 			ExcelFile.createdCell(product.getRow(), 8, aleatoria);
 			ExcelFile.createdCell(product.getRow(), 9, new Random().nextInt(20));
@@ -197,15 +184,13 @@ public class ExcelExporter implements Serializable{
 	public static String generateRandomString() {
 		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		Random random = new Random();
-
 		StringBuilder sb = new StringBuilder(10);
 		for (int i = 0; i < 10; i++) {
 			int index = random.nextInt(characters.length());
 			sb.append(characters.charAt(index));
 		}
-
 		return sb.toString();
 	}
-	
-	
+
+
 }

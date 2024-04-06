@@ -37,10 +37,10 @@ public class Intel extends ExcelExporter implements ProductInterface{
 				new Product(null, "Intel Core i3-8100", "cpu", "http://wgfgfdgd.com", new BigDecimal("200.00"), new BigDecimal("300.0"), null, null, null),
 				new Product(null, "Intel Core i5-6400", "cpu", "http://wgfgfdgd.com", new BigDecimal("400.00"), new BigDecimal("600.0"), null, null, null),
 				new Product(null, "Intel Core i5-8500", "cpu", "http://wgfgfdgd.com", new BigDecimal("600.00"), new BigDecimal("700.0"), null, null, null),
-				new Product(null, "Intel Core i5-8400", "cpu", "http://wgfgfdgd.com", new BigDecimal("550.0"), new BigDecimal("650.0"), null, null, null),
-				new Product(null, "Intel Core i5-500", "cpu", "http://wgfgfdgd.com", new BigDecimal("100.0"), new BigDecimal("500.0"), null, null, null),
-				new Product(null, "Intel Core i7-500", "cpu", "http://wgfgfdgd.com", new BigDecimal("300.0"), new BigDecimal("400.0"), null, null, null),
-				new Product(null, "Intel Core i3-6400", "cpu", "http://wgfgfdgd.com", new BigDecimal("320.0"), new BigDecimal("480.0"), null, null, null))
+				new Product(null, "Intel Core i5-8400", "cpu", "http://wgfgfdgd.com", new BigDecimal("550.00"), new BigDecimal("650.0"), null, null, null),
+				new Product(null, "Intel Core i5-500", "cpu", "http://wgfgfdgd.com", new BigDecimal("100.00"), new BigDecimal("500.00"), null, null, null),
+				new Product(null, "Intel Core i7-500", "cpu", "http://wgfgfdgd.com", new BigDecimal("300.00"), new BigDecimal("400.00"), null, null, null),
+				new Product(null, "Intel Core i3-6400", "cpu", "http://wgfgfdgd.com", new BigDecimal("320.00"), new BigDecimal("480.00"), null, null, null))
 				.map(product -> {
 					product.setSector(Sector.mapSetor(product.getName()));
 					return product;
