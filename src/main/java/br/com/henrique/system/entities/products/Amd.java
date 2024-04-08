@@ -33,20 +33,29 @@ public class Amd extends ExcelExporter implements ProductInterface{
 	@Override
 	public List<Product> startProduct() {
 		return Stream.of(
-				new Product(null, "RYZEN 3 3200G", "Processador", "http://wgfgfdgd.com", new BigDecimal("100.0"), new BigDecimal("200.0"), null, null, null),
-				new Product(null, "RYZEN 5 3500", "Processador", "http://wgfgfdgd.com", new BigDecimal("300.0"), new BigDecimal("500.0"), null, null, null),
-				new Product(null, "RYZEN 5 3600", "Processador", "http://wgfgfdgd.com", new BigDecimal("350.0"), new BigDecimal("550.0"), null, null, null),
-				new Product(null, "RYZEN 5 3600X", "Processador", "http://wgfgfdgd.com", new BigDecimal("400.0"), new BigDecimal("600.0"), null, null, null),
-				new Product(null, "RYZEN 5 5500", "Processador", "http://wgfgfdgd.com", new BigDecimal("400.0"), new BigDecimal("550.0"), null, null, null),
-				new Product(null, "RYZEN 5 5600", "Processador", "http://wgfgfdgd.com", new BigDecimal("500.0"), new BigDecimal("700.0"), null, null, null),
-				new Product(null, "RYZEN 5600G", "Processador", "http://wgfgfdgd.com", new BigDecimal("500.0"), new BigDecimal("750.0"), null, null, null),
-				new Product(null, "RYZEN 5 5700", "Processador", "http://wgfgfdgd.com", new BigDecimal("600.0"), new BigDecimal("1000.0"), null, null, null),
-				new Product(null, "RYZEN 5 5800", "Processador", "http://wgfgfdgd.com", new BigDecimal("650.0"), new BigDecimal("1050.0"), null, null, null),
-				new Product(null, "RYZEN 5 5800X", "Processador", "http://wgfgfdgd.com", new BigDecimal("800.0"), new BigDecimal("1200.0"), null, null, null),
-				new Product(null, "RX 550", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("300.0"), new BigDecimal("350.0"), null, null, null),
-				new Product(null, "RX 560", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("350.0"), new BigDecimal("500.0"), null, null, null),
-				new Product(null, "RX 570", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("450.0"), new BigDecimal("600.0"), null, null, null),
-				new Product(null, "RX 580", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("500.0"), new BigDecimal("800.0"), null, null, null))
+				new Product(null, "RYZEN 3 3200G", "Processador", "http://wgfgfdgd.com", new BigDecimal("100.00"), new BigDecimal("200.00"), null, null),
+				new Product(null, "RYZEN 5 3500", "Processador", "http://wgfgfdgd.com", new BigDecimal("300.00"), new BigDecimal("500.00"), null, null),
+				new Product(null, "RYZEN 5 3600", "Processador", "http://wgfgfdgd.com", new BigDecimal("350.00"), new BigDecimal("550.00"), null, null),
+				new Product(null, "RYZEN 5 3600X", "Processador", "http://wgfgfdgd.com", new BigDecimal("400.00"), new BigDecimal("600.00"), null, null),
+				new Product(null, "RYZEN 5 5500", "Processador", "http://wgfgfdgd.com", new BigDecimal("400.00"), new BigDecimal("550.00"), null, null),
+				new Product(null, "RYZEN 5 5600", "Processador", "http://wgfgfdgd.com", new BigDecimal("500.00"), new BigDecimal("700.00"), null, null),
+				new Product(null, "RYZEN 5600G", "Processador", "http://wgfgfdgd.com", new BigDecimal("500.00"), new BigDecimal("750.00"), null, null),
+				new Product(null, "RYZEN 5 5700", "Processador", "http://wgfgfdgd.com", new BigDecimal("600.00"), new BigDecimal("1000.00"), null, null),
+				new Product(null, "RYZEN 5 5800", "Processador", "http://wgfgfdgd.com", new BigDecimal("650.00"), new BigDecimal("1050.00"), null, null),
+				new Product(null, "RYZEN 5 5800X", "Processador", "http://wgfgfdgd.com", new BigDecimal("800.00"), new BigDecimal("1200.00"), null, null),
+				new Product(null, "RX 550", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("300.00"), new BigDecimal("350.00"), null, null),
+				new Product(null, "RX 560", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("350.00"), new BigDecimal("500.00"), null, null),
+				new Product(null, "RX 570", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("450.00"), new BigDecimal("600.00"), null, null),
+				new Product(null, "RX 580", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("500.00"), new BigDecimal("800.00"), null, null),
+				new Product(null, "RX 590", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("600.00"), new BigDecimal("1000.00"), null, null),
+				new Product(null, "RX 5500", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("800.00"), new BigDecimal("1250.00"), null, null),
+				new Product(null, "RX 5600", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("900.00"), new BigDecimal("1300.00"), null, null),
+				new Product(null, "RX 5700", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1500.00"), new BigDecimal("1800.00"), null, null),
+				new Product(null, "RX 5800", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1800.00"), new BigDecimal("2000.00"), null, null),
+				new Product(null, "RX 5500 XT", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1000.00"), new BigDecimal("1400.00"), null, null),
+				new Product(null, "RX 5600 XT", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1200.00"), new BigDecimal("1600.00"), null, null),
+				new Product(null, "RX 5700 XT", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1800.00"), new BigDecimal("2100.00"), null, null),
+				new Product(null, "RX 5800 XT", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("2000.00"), new BigDecimal("2200.00"), null, null))
 				.map(product -> {
 					product.setSector(Sector.mapSetor(product.getName()));
 					return product;

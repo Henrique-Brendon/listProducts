@@ -33,10 +33,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-    	List<Product> list = new ArrayList<>();
+
+    /*	
     	try {
-    	    
-    	    list.addAll(ExcelFile.iterar("intel.xlsx"));
     	    
     	    if (!list.isEmpty()) {
     	        System.out.println("Primeiro objeto: " + list.get(0).getName());
@@ -61,7 +60,7 @@ public class TestConfig implements CommandLineRunner {
     	} catch (Exception e) {
     	    System.out.println("Ocorreu uma exceção: " + e.getMessage());
     	    e.printStackTrace();
-    	}
+    	}*/
 		
     }
 }

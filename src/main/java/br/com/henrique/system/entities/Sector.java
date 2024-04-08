@@ -76,12 +76,15 @@ public class Sector implements Serializable{
 		map.put("RTX 3070 TI", new Sector(SectorName.HARDWARE));
 		map.put("RTX 3080", new Sector(SectorName.HARDWARE));
 		map.put("RTX 3080 TI", new Sector(SectorName.HARDWARE));
+		map.put("RTX 3090", new Sector(SectorName.HARDWARE));
+		map.put("RTX 3090 TI", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4060", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4060 TI", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4070", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4070 TI", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4080", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4080 TI", new Sector(SectorName.HARDWARE));
+		map.put("RTX 4090", new Sector(SectorName.HARDWARE));
 		map.put("RTX 4090 TI", new Sector(SectorName.HARDWARE));
 		//
 		// AMD
@@ -99,6 +102,22 @@ public class Sector implements Serializable{
 		map.put("RX 560", new Sector(SectorName.HARDWARE));
 		map.put("RX 570", new Sector(SectorName.HARDWARE));
 		map.put("RX 580", new Sector(SectorName.HARDWARE));
+		map.put("RX 590", new Sector(SectorName.HARDWARE));
+		map.put("RX 5500", new Sector(SectorName.HARDWARE));
+		map.put("RX 5500 XT", new Sector(SectorName.HARDWARE));
+		map.put("RX 5600", new Sector(SectorName.HARDWARE));
+		map.put("RX 5600 XT", new Sector(SectorName.HARDWARE));
+		map.put("RX 5700", new Sector(SectorName.HARDWARE));
+		map.put("RX 5700 XT", new Sector(SectorName.HARDWARE));
+		map.put("RX 5800", new Sector(SectorName.HARDWARE));
+		map.put("RX 5800 XT", new Sector(SectorName.HARDWARE));
+		map.put("RX 5900", new Sector(SectorName.HARDWARE));
+		map.put("RX 5900 XT", new Sector(SectorName.HARDWARE));
+		map.put("RX 6600", new Sector(SectorName.HARDWARE));
+		map.put("RX 6600 XT", new Sector(SectorName.HARDWARE));
+		map.put("RX 6700 ", new Sector(SectorName.HARDWARE));
+		map.put("RX 6700 XT", new Sector(SectorName.HARDWARE));
+		
 		//
 		// INTEL
 		map.put("Intel Core i3-8100", new Sector(SectorName.HARDWARE));

@@ -25,7 +25,6 @@ public class Product implements Serializable{
     private BigDecimal price;
     private Instant dateEntry;
     private Instant dateExit;
-    private Integer quantity;
 
 	@ManyToOne
 	@JoinColumn(name = "sector")
@@ -37,8 +36,7 @@ public class Product implements Serializable{
 
     public Product(){}
 
-    public Product(Long id, String name, String characteristics, String imgUrl, BigDecimal cost, BigDecimal price, Instant dateEntry, Instant dateExit,
-            Integer quantity) {
+    public Product(Long id, String name, String characteristics, String imgUrl, BigDecimal cost, BigDecimal price, Instant dateEntry, Instant dateExit) {
         this.id = id;
         this.name = name;
         this.characteristics = characteristics;
@@ -47,7 +45,6 @@ public class Product implements Serializable{
         this.price = price;
         this.dateEntry = dateEntry;
         this.dateExit = dateExit;
-        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -112,14 +109,6 @@ public class Product implements Serializable{
 
     public void setDateExit(Instant dateExit) {
         this.dateExit = dateExit;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public Sector getSector() {

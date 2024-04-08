@@ -87,59 +87,62 @@ public class ExcelFile {
 	    List<Product> list = new ArrayList<>();
 	    try (FileInputStream file = new FileInputStream(path)) {
 	        XSSFWorkbook book = new XSSFWorkbook(file);
-	        XSSFSheet sheet = book.getSheetAt(0);
-	        int dataBegins = 5;
-	        int lastRow = sheet.getLastRowNum();
-	        for (int i = dataBegins; i <= lastRow; i++) { 
-	            XSSFRow row = sheet.getRow(i);
-	            if (row != null) {
-	                Product product = new Product();
-	                for (int j = 0; j < 9; j++) {
-	                    XSSFCell cell = row.getCell(j);
-	                    if (cell != null) {
-	                        switch (j) {
-	                            case 0:
-	                                product.setName(cell.getStringCellValue());
-	                                break;
-	                            case 1:
-	                                product.setCharacteristics(cell.getStringCellValue());
-	                                break;
-	                            case 2:
-	                                product.setImgUrl(cell.getStringCellValue());
-	                                break;
-	                            case 3:
-	                                product.setCost(formatPrice(cell.getStringCellValue()));
-	                                break;
-	                            case 4:
-	                                product.setPrice(formatPrice(cell.getStringCellValue()));
-	                                break;
-	                            case 5:
-	                                product.setDateEntry(DateTransform.format(cell.getStringCellValue()));
-	                                break;
-	                            case 6:
-	                                if (cell != null) {
-	                                    product.setDateExit(DateTransform.format(cell.getStringCellValue()));
-	                                }
-	                                break;
-	                            case 7:
-	                                product.setSector(new Sector(SectorName.valueOf(cell.getStringCellValue())));
-	                                break;
-	                            case 8:
-	                                product.setCodList(new CodList(cell.getStringCellValue()));
-	                                break;
-	                        }
-	                    }
-	                }
-	                XSSFCell cell = row.getCell(9);
-	                if (cell != null && cell.getNumericCellValue() > 0) {
-	                    for (int h = 0; h < cell.getNumericCellValue(); h++) {
-	                        list.add(product);
-	                    }
-	                } else {
-	                    list.add(product);
-	                }
-	            }
-	        }
+	        for(int a = 0; a<12; a++) {
+		        int dataBegins = 5;
+		        XSSFSheet sheet = book.getSheetAt(a);
+		        int lastRow = sheet.getLastRowNum();
+		        System.out.println("File: " + a);
+		        for (int i = dataBegins; i <= lastRow; i++) { 
+		            XSSFRow row = sheet.getRow(i);
+		            if (row != null) {
+		                Product product = new Product();
+		                for (int j = 0; j < 9; j++) {
+		                    XSSFCell cell = row.getCell(j);
+		                    if (cell != null) {
+		                        switch (j) {
+		                            case 0:
+		                                product.setName(cell.getStringCellValue());
+		                                break;
+		                            case 1:
+		                                product.setCharacteristics(cell.getStringCellValue());
+		                                break;
+		                            case 2:
+		                                product.setImgUrl(cell.getStringCellValue());
+		                                break;
+		                            case 3:
+		                                product.setCost(formatPrice(cell.getStringCellValue()));
+		                                break;
+		                            case 4:
+		                                product.setPrice(formatPrice(cell.getStringCellValue()));
+		                                break;
+		                            case 5:
+		                                product.setDateEntry(DateTransform.formatarData(cell.getStringCellValue()));
+		                                break;
+		                            case 6:
+		                                if (cell != null) {
+		                                    product.setDateExit(DateTransform.formatarData(cell.getStringCellValue()));
+		                                }
+		                                break;
+		                            case 7:
+		                                product.setSector(new Sector(SectorName.valueOf(cell.getStringCellValue())));
+		                                break;
+		                            case 8:
+		                                product.setCodList(new CodList(cell.getStringCellValue()));
+		                                break;
+		                        }
+		                    }
+		                }
+		                XSSFCell cell = row.getCell(9);
+		                if (cell != null && cell.getNumericCellValue() > 0) {
+		                    for (int h = 0; h < cell.getNumericCellValue(); h++) {
+		                        list.add(product);
+		                    }
+		                } else {
+		                    list.add(product);
+		                }
+		            }
+		        }
+	    }
 	        return list;
 	    } catch (IOException e) {
 	        System.out.println(e.getMessage());

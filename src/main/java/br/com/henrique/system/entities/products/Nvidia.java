@@ -33,18 +33,34 @@ public class Nvidia extends ExcelExporter implements ProductInterface{
 	@Override
 	public List<Product> startProduct() {
 		return Stream.of( // data
-				new Product(null, "GTX 960", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("200.0"), new BigDecimal("300.0"), null, null, null),
-				new Product(null, "GTX 970", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("400.0"), new BigDecimal("600.0"), null, null, null),
-				new Product(null, "GTX 980", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("450.0"), new BigDecimal("700.0"), null, null, null),
-				new Product(null, "GTX 1060", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("300.0"), new BigDecimal("500.0"), null, null, null),
-				new Product(null, "GTX 1070", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("500.0"), new BigDecimal("800.0"), null, null, null),
-				new Product(null, "GTX 1080", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("900.0"), new BigDecimal("1000.0"), null, null, null),
-				new Product(null, "GTX 1080 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1200.0"), new BigDecimal("1500.0"), null, null, null),
-				new Product(null, "RTX 2060", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("700.0"), new BigDecimal("1500.0"), null, null, null),
-				new Product(null, "RTX 2060 SUPER", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("900.0"), new BigDecimal("1700.0"), null, null, null),
-				new Product(null, "RTX 2070", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1200.0"), new BigDecimal("1900.0"), null, null, null),
-				new Product(null, "RTX 2080", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("800.0"), new BigDecimal("2300.0"), null, null, null),
-				new Product(null, "RTX 2080 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1300.0"), new BigDecimal("2500.0"), null, null, null))
+				new Product(null, "GTX 960", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("200.00"), new BigDecimal("300.00"), null, null),
+				new Product(null, "GTX 970", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("400.00"), new BigDecimal("600.00"), null, null),
+				new Product(null, "GTX 980", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("450.00"), new BigDecimal("700.00"), null, null),
+				new Product(null, "GTX 1060", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("300.00"), new BigDecimal("500.00"), null, null),
+				new Product(null, "GTX 1070", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("500.00"), new BigDecimal("800.00"), null, null),
+				new Product(null, "GTX 1080", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("900.00"), new BigDecimal("1000.00"), null, null),
+				new Product(null, "GTX 1080 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1200.00"), new BigDecimal("1500.00"), null, null),
+				new Product(null, "RTX 2060", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("700.00"), new BigDecimal("1500.00"), null, null),
+				new Product(null, "RTX 2060 SUPER", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("900.00"), new BigDecimal("1700.00"), null, null),
+				new Product(null, "RTX 2070", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1200.00"), new BigDecimal("1900.00"), null, null),
+				new Product(null, "RTX 2080", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("800.00"), new BigDecimal("2300.00"), null, null),
+				new Product(null, "RTX 2080 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1300.00"), new BigDecimal("2500.00"), null, null),
+				new Product(null, "RTX 3060", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1500.00"), new BigDecimal("3000.00"), null, null),
+				new Product(null, "RTX 3060 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("2000.00"), new BigDecimal("3400.00"), null, null),
+				new Product(null, "RTX 3070", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("2400.00"), new BigDecimal("3800.00"), null, null),
+				new Product(null, "RTX 3070 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("2700.00"), new BigDecimal("4200.00"), null, null),
+				new Product(null, "RTX 3080", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("3000.00"), new BigDecimal("4800.00"), null, null),
+				new Product(null, "RTX 3080 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("3500.00"), new BigDecimal("5200.00"), null, null),
+				new Product(null, "RTX 3090", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("4000.00"), new BigDecimal("5500.00"), null, null),
+				new Product(null, "RTX 3090 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("4300.00"), new BigDecimal("6000.00"), null, null),
+				new Product(null, "RTX 4060", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("1800.00"), new BigDecimal("3500.00"), null, null),
+				new Product(null, "RTX 4060 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("2000.00"), new BigDecimal("3700.00"), null, null),
+				new Product(null, "RTX 4070", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("2800.00"), new BigDecimal("4200.00"), null, null),
+				new Product(null, "RTX 4070 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("3000.00"), new BigDecimal("4800.00"), null, null),
+				new Product(null, "RTX 4080", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("3800.00"), new BigDecimal("5800.00"), null, null),
+				new Product(null, "RTX 4080 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("4200.00"), new BigDecimal("6200.00"), null, null),
+				new Product(null, "RTX 4090", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("5000.00"), new BigDecimal("1200.00"), null, null),
+				new Product(null, "RTX 4090 TI", "placa de vídeo", "http://wgfgfdgd.com", new BigDecimal("6000.00"), new BigDecimal("14000.00"), null, null))
 				.map(Produto -> {
 					Produto.setSector(Sector.mapSetor(Produto.getName()));
 					return Produto;

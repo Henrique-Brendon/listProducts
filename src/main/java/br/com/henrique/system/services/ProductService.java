@@ -54,7 +54,6 @@ public class ProductService {
         entity.setPrice(product.getPrice());
         entity.setDateEntry(product.getDateEntry());
         entity.setDateExit(product.getDateExit());
-        entity.setQuantity(product.getQuantity());
     }
 
 }

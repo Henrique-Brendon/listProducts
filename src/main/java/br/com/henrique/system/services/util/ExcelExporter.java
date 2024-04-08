@@ -2,6 +2,10 @@ package br.com.henrique.system.services.util;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
@@ -155,17 +159,28 @@ public class ExcelExporter implements Serializable{
 		for (Product produtoAux : listProduto) {
 			produtoAux.setDateEntry(DateTransform.formatarData(date));
 			product.setRow(product.getSheet().createRow(rowIndex++));
-	
+			
 			ExcelFile.createdCell(product.getRow(), 0, produtoAux.getName());
 			ExcelFile.createdCell(product.getRow(), 1, produtoAux.getCharacteristics());
 			ExcelFile.createdCell(product.getRow(), 2, produtoAux.getImgUrl());
-			ExcelFile.createdCell(product.getRow(), 3, produtoAux.getCost() + "0 R$");
-			ExcelFile.createdCell(product.getRow(), 4, produtoAux.getPrice() + "0 R$");
-			ExcelFile.createdCell(product.getRow(), 5, produtoAux.getDateEntry());
-			//ExcelFile.createdCell(product.getRow(), 6, new String("NULL"));
+			ExcelFile.createdCell(product.getRow(), 3, produtoAux.getCost() + " R$");
+			ExcelFile.createdCell(product.getRow(), 4, produtoAux.getPrice() + " R$");
+			ExcelFile.createdCell(product.getRow(), 5, DateTransform.formatInstant(produtoAux.getDateEntry()));
+			Random random = new Random();
+			
+			DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate localDate = LocalDate.parse(DateTransform.formatInstant(produtoAux.getDateEntry()), fmt);
+
+			int randomMonths = random.nextInt(10);
+			LocalDate randomDate = localDate.plusMonths(randomMonths);
+			int randomDays = random.nextInt(30);
+			randomDate = localDate.plusDays(randomDays);
+			DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			
+			ExcelFile.createdCell(product.getRow(), 6, randomDate.format(outputFormatter));
 			ExcelFile.createdCell(product.getRow(), 7, produtoAux.getSector().getName());
 			ExcelFile.createdCell(product.getRow(), 8, aleatoria);
-			ExcelFile.createdCell(product.getRow(), 9, new Random().nextInt(20));
+			ExcelFile.createdCell(product.getRow(), 9, random.nextInt(20));
 		}
 
 		for (int j = 0; j < 9; j++) {
@@ -176,7 +191,7 @@ public class ExcelExporter implements Serializable{
 	public String dateSheetName(String sheetName) {
 		if (sheetName != null && sheetName.matches("\\d+") && Integer.parseInt(sheetName) >= 1
 				&& Integer.parseInt(sheetName) <= 12) {
-			return String.format("12/%02d/2018", Integer.parseInt(sheetName));
+			return String.format("12/%02d/2023", Integer.parseInt(sheetName));
 		}
 		return null;
 	}
